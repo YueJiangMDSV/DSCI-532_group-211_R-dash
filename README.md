@@ -1,8 +1,8 @@
 # DSCI-532_group-211_R-dash
 
-This repository hosts the dashboard for the stock price data from the `vega-dataset`. The background and purpose of this dashboard can be found in our [proposal.](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/blob/master/Proposal.md)
+This repository hosts the dashboard for the stock price data from the `vega-dataset`. The background and purpose of this dashboard can be found in our [proposal.]() ***the link needs to be updated after push to group repo***
 
-**The deployed APP can be found here: https://dsci-532-group-211-milestone2.herokuapp.com/**
+**The deployed APP can be found here:**   ***the link needs to be updated after deploying app***
 
 ### Description of the App/Dashboard
 
@@ -21,4 +21,7 @@ The charts' labels and titles shown in the sketch below are based on DSCI 531 la
 
 ### Sketch for dashboard 
 
-![](img/old_sketch.png)
+![tab1](img/tab1-s.png)
+![tab2](img/tab2.png)
+![tab3](img/tab3-s.png)
+
