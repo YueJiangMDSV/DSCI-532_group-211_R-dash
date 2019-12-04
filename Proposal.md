@@ -8,7 +8,7 @@ The dataset we are using is the `Stocks` data from the `vega-datasets`. The data
     
 `symbol` lists out the stock ticker symbol for the companies included in the dataset. There are 5 companies in total, and they are Microsoft, Amazon, IBM, Google, and Apple. For visualization and readability purposes, we renamed the column to `company` and replaced the stock ticker symbol with actual company names.     
      
-The `date` column lists out the date when the stock price was recorded. The value of the `date` column ranges from January 1, 2000 to March 1, 2010. The date range is the same for Microsoft, Amazon, IBM, and Apple. Each of them has 123 observations in the dataset. Since  Google held its IPO in August, 2004, the record for Google started from August 1, 2004. Therefore, there are 68 observations for Google.     
+The `date` column lists out the date when the stock price was recorded. The value of the `date` column ranges from January 1, 2000 to March 1, 2010. The date range is the same for Microsoft, Amazon, IBM, and Apple. Each of them has 123 observations in the dataset. Since Google held its IPO in August, 2004, the record for Google started from August 1, 2004. Therefore, there are 68 observations for Google.     
      
 The `price` column lists out the price of that stock on the recorded `date`.    
     
@@ -16,7 +16,7 @@ We then created a number of new columns to facilitate our analysis. For plotting
    
 We created the `monthly_return` column, which is the monthly percentage changes in stock prices compare to the previous month.      
      
-We aslo created `shares` and `inv_value` columns. We assume that the investor started with an initial investment of $10,000 in August 1, 2004. The `shares` column is calculated as $10,000 divided by the price at August 1, 2004. We choose this date because Google held its IPO in August, 2004. In this way, each stock will have the same start date and end date.
+We also created `shares` and `inv_value` columns. We assume that the investor started with an initial investment of $10,000 in August 1, 2004. The `shares` column is calculated as $10,000 divided by the price at August 1, 2004. We choose this date because Google held its IPO in August, 2004. In this way, each stock has  the same start date and end date.
 
 The `inv_value` column was calculated by `price` * `shares`.   
 <p style="text-align:center;"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\large&space;inv\_value=price&space;*&space;shares" title="\large inv\_value=price * shares" />
@@ -32,9 +32,11 @@ Ted is a layman in financial markets. He just becomes interested in the stock ma
 
 To answer this question, he wants to [explore] price fluctuations for the abovementioned five stocks and their monthly price changes. He wants to be able to [compare] the price changes of different stocks, and [identify] when there was the greatest price volatility. 
 
-When Ted logs on to the “Stock Price Data Analysis” app, on the first tab ”About our data”, he sees a brief introduction of the and the data frameat a glance. Then he clicks the second tab “Stock Trends”. There, in the first plot, he sees the monthly stock prices from January 2000 to March 2010 of the five stocks. In the second plot below, Ted sees the monthly percentage changes in stock prices. There is a drop-down menu at the top allows him to select stocks.
+When Ted logs on to the "Stock Price Data Analysis" app, on the first tab "About Our Data", he sees a brief introduction of the dataset and the data frame at a glance. 
 
-When Ted selects one, the first plot and the second plot will automatically change by displaying only that stock and hiding other stocks. He can also select different stocks and compare them. Each plot also has an independent slider bar that Ted can select different time period to further explore. When doing so, Ted may find out that there are a lot of fluctuations is stock prices
+Then he clicks the second tab “Stock Trends”. There is a drop-down menu at the top allows him to select stocks. In the first plot, he sees the monthly stock prices from January 2000 to March 2010 of the five companies. In the second plot below, Ted sees the monthly percentage changes in stock prices. 
+
+When Ted selects one company in the drop-down menu, the first plot and the second plot will automatically change by displaying only that stock and hiding other stocks. He can also select different stocks at the same time and compare them. The two graphs would only display the stocks that are selected. Each plot also has an independent slider bar that Ted can select different time period to further explore. When doing so, Ted may find out that there are a lot of fluctuations in stock prices, especially during the 2008 financial crisis.
 
 Then, Ted wants to know more about the investment values. His second question is:     
 
@@ -42,6 +44,6 @@ Then, Ted wants to know more about the investment values. His second question is
 
 Ted wants to be able to [explore] the hypothetical investment value, [compare] the hypothetical investment returns of different stocks, and [identify] which stock gives the highest return.    
     
-On the third tab “Investment Value”, Ted can take a look at the hypothetical investment value of the five stocks from August 2004 to March 2010. By using a slide bar down the graph, he can select the time period to take a closer look at the hypothetical investment value in that period. By doing so, Ted may find out that Apple has the highest investment value and it may be best for him to hold the stock from the beginning till the end.    
+On the third tab “Investment Value”, Ted can take a look at the hypothetical investment value of the five stocks from August 2004 to March 2010. By using a slide bar down the graph, he can select the time period to take a closer look at the hypothetical investment value in that period. By doing so, Ted may find out that Apple has the highest investment value at the end period 2010, and it may be best for him to hold the stock from the beginning till the end.    
     
 This app may give Ted some basic ideas of how stock prices fluctuate and how long-term investment can help him get through financial crisis. Next, Ted decides to talk to a financial advisor to explore his investment plans, since he believes now he understands the stock market better. 
