@@ -21,7 +21,7 @@ The charts' labels and titles shown in the sketch below are based on DSCI 531 la
 
 ### Sketch for dashboard 
 
-![tab1](img/tab1-s.png)
+![tab1](img/tab1.png)
 ![tab2](img/tab2.png)
-![tab3](img/tab3-s.png)
+![tab3](img/tab3.png)
 
