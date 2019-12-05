@@ -7,7 +7,7 @@ contributors of this MDS project pledge to making participation in our project a
 level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation.  All participants in this project are expected to show respect and courtesy to others.
 
-Contributors of this project are responsible for enforcing the Code of Conduct. They can be contacted by emailing niruidan@gmail.com and/or amarria1@gmail.com and/or yuejiang001@outlook.com. All reports will be kept confidential.
+Contributors of this project are responsible for enforcing the Code of Conduct. They can be contacted by emailing niruidan@gmail.com and/or arun.marria@gmail.com and/or yuejiang001@outlook.com. All reports will be kept confidential.
 
 ## Our Standards
 
