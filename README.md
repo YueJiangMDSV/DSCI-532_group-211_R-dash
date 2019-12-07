@@ -19,6 +19,6 @@ The APP is called **Stock Price Data Analysis**. It has three tabs and two sets 
 ### Sketch for dashboard 
 
 ![tab1](img/tab1.png)
-![tab2](img/tab2.png)
-![tab3](img/tab3.png)
+![](img/20191206_tab2.png)
+![](img/20191206_tab3.png)
 
