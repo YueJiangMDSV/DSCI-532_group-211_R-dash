@@ -20,11 +20,13 @@ library(viridis)
 theme_set(theme_half_open())
 
 app <- Dash$new(external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.css")
-# Use a function make_graph() to create the graph
+
+
 
 # importing wrangled dataset
 
 df <- read_csv("data/tab1.csv")
+df$company <- factor(df$company)
 
 # stock history plot
 make_graph1 <- function(df){
@@ -40,8 +42,6 @@ ggplotly(plot1_tab1)
 
 
 # monthly price change plot
-
-
 make_graph2 <- function(df){
 
 plot2_tab1 <- df %>% 
@@ -72,6 +72,20 @@ graph2 <- dccGraph(
   figure=make_graph2(df) # gets initial data using argument defaults
 )
 
+# stock companies' dropdown
+
+stocksDropdown <- dccDropdown(
+  id = "stocks-dropdown",
+  
+  options = map(
+    levels(df$company), function(x){
+      list(label=x, value=x)
+    }),
+  value = levels(df$company), #Selects all by default
+  multi = TRUE
+)
+
+
 
 
 app$layout(
@@ -81,7 +95,10 @@ app$layout(
                 htmlH2("From 2000 to 2010, Apple's stock price increased 760%." ),
                 htmlH3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010." ),
                 htmlP("Use the dropdown window to select the company you want to explore. Use the slide bar down the graph to select the time range.") ,
-                graph1,
+                stocksDropdown, 
+                # History chart
+                graph1, 
+                # monthly chart
                 graph2
 
               )
