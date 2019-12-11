@@ -6,6 +6,6 @@ If you notice a bug, or have a feature request, please open up an issue [here](h
 
 All contributors must abide by our code of conduct, which can be found [here](). ***needs to update this link after push to the group project repo***
 
-We welcome all contributions to this project. In particular, we are seeking improvement from other visualization professionals to improve the effectiveness and functionality of our application.
+We welcome all contributions to the project. In particular, we are seeking improvement from other visualization professionals to improve the effectiveness and functionality of our application.
 
 
