@@ -91,6 +91,11 @@ stocksDropdown <- dccDropdown(
 app$layout(
   htmlDiv(
     list(
+      htmlH1("Stock Price Data Analysis"),
+      dccTabs(id="tabs-example", value='tab-1-example',children=list(
+
+    dccTab(label = "About our data"), 
+    dccTab(label='Stock trends', htmlDiv(list(
         htmlH1("Price History"),
                 htmlH2("From 2000 to 2010, Apple's stock price increased 760%." ),
                 htmlH3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010." ),
@@ -100,21 +105,30 @@ app$layout(
                 graph1, 
                 # monthly chart
                 graph2
-
+      )
               )
+
+
+    ),
+    dccTab(label = "Investment Value")
+    
+
 )
+)
+)
+  )
 )
 
 
 # interactivity of dropdown with chart 1
 
 app$callback(
-  #update figure of gap-graph
+ 
   output=list(id = 'history-graph', property='figure'),
-  #based on values of year, continent, y-axis components
+  
   params=list(input(id = 'stocks-dropdown', property='value')
               ),
-  #this translates your list of params into function arguments
+ 
   function(dropdown_value) {
     df <- df %>% 
             filter(company %in% dropdown_value )
@@ -124,12 +138,11 @@ app$callback(
   # interactivity of dropdown with chart 2
 
 app$callback(
-  #update figure of gap-graph
   output=list(id = 'monthly-graph', property='figure'),
-  #based on values of year, continent, y-axis components
+ 
   params=list(input(id = 'stocks-dropdown', property='value')
               ),
-  #this translates your list of params into function arguments
+
   function(dropdown_value) {
     df <- df %>% 
             filter(company %in% dropdown_value )
