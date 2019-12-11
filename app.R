@@ -27,19 +27,22 @@ app <- Dash$new(external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.c
 df <- read_csv("data/tab1.csv")
 
 # stock history plot
+make_graph1 <- function(df){
+    plot1_tab1 <- df %>%
+        ggplot(aes(x = date, y = price, group = company, color = company)) +
+        geom_line() +
+        ggtitle("Stock price change from 2000 to 2010") +
+        labs(x = "Date",
+            y = "Stock Price")
+ggplotly(plot1_tab1)
 
-plot1_tab1 <- df %>%
-    ggplot(aes(x = date, y = price, group = company, color = company)) +
-    geom_line() +
-    ggtitle("Stock price change from 2000 to 2010") +
-    labs(x = "Date",
-         y = "Stock Price")
+}
 
 
 # monthly price change plot
 
 
-make_graph1 <- function(df){
+make_graph2 <- function(df){
 
 plot2_tab1 <- df %>% 
     ggplot(aes(x = date, y = monthly_return, fill = (monthly_return > 0))) + 
@@ -64,6 +67,11 @@ graph1 <- dccGraph(
   figure=make_graph1(df) # gets initial data using argument defaults
 )
 
+graph2 <- dccGraph(
+  id = 'monthly-graph',
+  figure=make_graph2(df) # gets initial data using argument defaults
+)
+
 
 
 app$layout(
@@ -73,7 +81,8 @@ app$layout(
                 htmlH2("From 2000 to 2010, Apple's stock price increased 760%." ),
                 htmlH3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010." ),
                 htmlP("Use the dropdown window to select the company you want to explore. Use the slide bar down the graph to select the time range.") ,
-                graph1
+                graph1,
+                graph2
 
               )
 )
