@@ -75,7 +75,7 @@ graph2 <- dccGraph(
 # stock companies' dropdown
 
 stocksDropdown <- dccDropdown(
-  id = "stocks-dropdown",
+  id = 'stocks-dropdown',
   
   options = map(
     levels(df$company), function(x){
@@ -104,4 +104,21 @@ app$layout(
               )
 )
 )
-app$run_server()
+
+
+
+
+app$callback(
+  #update figure of gap-graph
+  output=list(id = 'history-graph', property='figure'),
+  #based on values of year, continent, y-axis components
+  params=list(input(id = 'stocks-dropdown', property='value')
+              ),
+  #this translates your list of params into function arguments
+  function(dropdown_value) {
+    df <- df %>% 
+            filter(company %in% dropdown_value )
+    make_graph1(df)
+  })
+
+  app$run_server()
