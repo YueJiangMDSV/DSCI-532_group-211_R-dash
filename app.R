@@ -36,8 +36,9 @@ make_graph1 <- function(df){
         ggtitle("Stock price change from 2000 to 2010") +
         labs(x = "Date",
             y = "Stock Price")
-ggplotly(plot1_tab1)
-
+ggplotly(plot1_tab1, dynamicTicks = TRUE, tooltip = c("y", "x", "group")) %>%
+  rangeslider() %>%
+  layout(hovermode = "x")
 }
 
 
