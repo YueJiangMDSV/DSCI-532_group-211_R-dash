@@ -106,7 +106,7 @@ app$layout(
 )
 
 
-
+# interactivity of dropdown with chart 1
 
 app$callback(
   #update figure of gap-graph
@@ -119,6 +119,21 @@ app$callback(
     df <- df %>% 
             filter(company %in% dropdown_value )
     make_graph1(df)
+  })
+
+  # interactivity of dropdown with chart 2
+
+app$callback(
+  #update figure of gap-graph
+  output=list(id = 'monthly-graph', property='figure'),
+  #based on values of year, continent, y-axis components
+  params=list(input(id = 'stocks-dropdown', property='value')
+              ),
+  #this translates your list of params into function arguments
+  function(dropdown_value) {
+    df <- df %>% 
+            filter(company %in% dropdown_value )
+    make_graph2(df)
   })
 
   app$run_server()
