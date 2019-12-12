@@ -136,29 +136,15 @@ dates <- c(
 
 yearMarks <- map(dates, as.character)
 # names(yearMarks) <- dates
-yearSlider <- dccRangeSlider(
+yearSlider <- dccSlider(
   id = "year",
   marks = yearMarks,
   min = 0,
   max = 12,
+  
  
-  value = list(0,12)
+  value = 12
 )
-
-#  html.P([
-#                     html.Label("Year range"),
-#                     dcc.Slider(id = 'slider',
-#                                     marks = date_mark,
-#                                     min = 0,
-#                                     max = 12,
-#                                     value = 10) 
-#                         ], style = {'width' : '75%',
-#                                     'fontSize' : '20px',
-#                                     'padding-left' : '220px',
-#                                     'display': 'inline-block',}),
-
-
-
 
 app$layout(
   htmlDiv(
@@ -283,6 +269,22 @@ app$callback(
     df <- df %>% 
             filter(company %in% dropdown_value )
     make_graph2(df)
+  })
+
+
+    # interactivity of slider with tab3
+
+app$callback(
+  output=list(id = 'investment-graph', property='figure'),
+ 
+  params=list(input(id = 'year', property='value')
+              ),
+
+  function(year_range) {
+
+    df2 <- df2 %>% 
+            filter(date >= '2004-08-01' &  date <= dates[year_range]) 
+    make_graph3(df2)
   })
 
   app$run_server()
