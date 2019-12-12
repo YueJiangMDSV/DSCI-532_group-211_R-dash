@@ -35,7 +35,8 @@ make_graph1 <- function(df){
         geom_line() +
         ggtitle("Stock price change from 2000 to 2010") +
         labs(x = "Date",
-            y = "Stock Price")
+            y = "Stock Price") +
+        theme(plot.title = element_text(hjust = 0.5, vjust = 2))
 ggplotly(plot1_tab1, dynamicTicks = TRUE, tooltip = c("y", "x", "group")) %>%
   rangeslider() %>%
   layout(hovermode = "x")
@@ -48,11 +49,13 @@ make_graph2 <- function(df){
 plot2_tab1 <- df %>% 
     ggplot(aes(x = date, y = monthly_return, fill = (monthly_return > 0))) + 
     geom_bar(stat = "identity") +
-    labs(x = "Date",
+    labs(x = "\n \n Date",
          y = "Monthly Change %",
          title = "Monthly price changes between 2000 and 2010") +
     scale_fill_manual(values = c("orange", "royalblue")) +
-    theme(legend.title = element_blank(), legend.position = "none") +
+    theme(legend.title = element_blank(),
+          legend.position = "none",
+          plot.title = element_text(hjust = 0.5, vjust = 2)) +
     facet_wrap(~ company, nrow = 2) +
     panel_border() +
     background_grid()
@@ -83,6 +86,7 @@ stocksDropdown <- dccDropdown(
       list(label=x, value=x)
     }),
   value = levels(df$company), #Selects all by default
+  style = list(width = 500),
   multi = TRUE
 )
 
@@ -93,17 +97,21 @@ app$layout(
   htmlDiv(
     list(
       htmlH1("Stock Price Data Analysis"),
-      dccTabs(id="tabs-example", value='tab-1-example',children=list(
+      dccTabs(id="tabs-example", value='tab-1',children=list(
 
-    dccTab(label = "About our data"), 
-    dccTab(label='Stock trends', htmlDiv(list(
+    dccTab(label = "About our data", value = 'tab-1'), 
+    dccTab(label='Stock trends', value = 'tab-2', htmlDiv(list(
         htmlH1("Price History"),
                 htmlH2("From 2000 to 2010, Apple's stock price increased 760%." ),
                 htmlH3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010." ),
                 htmlP("Use the dropdown window to select the company you want to explore. Use the slide bar down the graph to select the time range.") ,
                 stocksDropdown, 
+                #space
+                htmlIframe(height=15, width=10, style=list(borderWidth = 0)),
                 # History chart
                 graph1, 
+                #space
+                htmlIframe(height=15, width=10, style=list(borderWidth = 0)),
                 # monthly chart
                 graph2
       )
@@ -111,7 +119,7 @@ app$layout(
 
 
     ),
-    dccTab(label = "Investment Value")
+    dccTab(label = "Investment Value", value = 'tab-3')
     
 
 )
