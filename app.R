@@ -79,7 +79,8 @@ make_graph1 <- function(df){
         ggtitle("Stock price change from 2000 to 2010") +
         labs(x = "Date",
             y = "Stock Price") +
-        theme(plot.title = element_text(hjust = 0.5, vjust = 2))
+        theme(plot.title = element_text(hjust = 0.5, vjust = 2),
+              panel.border = element_blank())
 ggplotly(plot1_tab1, dynamicTicks = TRUE, tooltip = c("y", "x", "group")) %>%
   rangeslider() %>%
   layout(hovermode = "x")
@@ -95,7 +96,8 @@ plot2_tab1 <- df %>%
     scale_fill_manual(values = c("orange", "royalblue")) +
     theme(legend.title = element_blank(),
           legend.position = "none",
-          plot.title = element_text(hjust = 0.5, vjust = 2)) +
+          plot.title = element_text(hjust = 0.5, vjust = 2)) + 
+    scale_y_continuous(labels = percent) +
     labs(x = "\n \n Date",
          y = "Monthly Change %",
          title = "Monthly price changes between 2000 and 2010") +
@@ -115,9 +117,10 @@ plot2_tab1 <- df %>%
     plot_tab2 <-  df2 %>%
         ggplot(aes(x = date, y = inv_value, group = company, color = company)) +
         geom_line() +
-        ggtitle("Investment value from August 2004 to March 2010") +
+        ggtitle("Investment value from August 2004 to March 2010") + 
+        scale_y_continuous(labels = dollar) +
         labs(x = "Date",
-            y = "Investment Value $USD")
+            y = "Investment Value in USD")
             ggplotly(plot_tab2)
   }
 
