@@ -1,5 +1,4 @@
 
-
 ## importing required libraries
 library(dash)
 library(dashCoreComponents)
@@ -17,7 +16,8 @@ theme_set(theme_bw())
 app <- Dash$new(external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.css")
 
 colors <- list(
-  text = '#0013a3'
+  text = '#0013a3',
+  "margin-left"= "30px"
 )
 
 textStyle1 = list(
@@ -28,6 +28,9 @@ textStyle1 = list(
 textStyle2 = list(
   textAlign = 'center'
 )
+
+textStyle3 = list('font-size' = '17px',
+                 "margin-left"= "30px")
 
 # importing wrangled dataset
 df <- read_csv("https://raw.githubusercontent.com/UBC-MDS/DSCI-532_group-211_R-dash/master/data/tab1.csv")
@@ -89,13 +92,13 @@ make_graph2 <- function(df){
 plot2_tab1 <- df %>% 
     ggplot(aes(x = date, y = monthly_return, fill = (monthly_return > 0))) + 
     geom_bar(stat = "identity") +
-    labs(x = "\n \n Date",
-         y = "Monthly Change %",
-         title = "Monthly price changes between 2000 and 2010") +
     scale_fill_manual(values = c("orange", "royalblue")) +
     theme(legend.title = element_blank(),
           legend.position = "none",
           plot.title = element_text(hjust = 0.5, vjust = 2)) +
+    labs(x = "\n \n Date",
+         y = "Monthly Change %",
+         title = "Monthly price changes between 2000 and 2010") +
     facet_wrap(~ company, nrow = 2) 
    
 
@@ -147,6 +150,13 @@ stocksDropdown1 <- dccDropdown(
       list(label=x, value=x)
     }),
   value = levels(df$company), #Selects all by default
+  style=list( "margin-left"= "300px",
+              "margin-right"= "200px",
+              "margin-top"= "0px",
+              "margin-bottom"="0px",
+              width= 500,
+              height="15px",
+              padding =  0),
   multi = TRUE
 )
 # stock companies' dropdown for tab2
@@ -158,7 +168,13 @@ stocksDropdown <- dccDropdown(
       list(label=x, value=x)
     }),
   value = levels(df$company), #Selects all by default
-  style = list(width = 500),
+  style=list( "margin-left"= "300px",
+              "margin-right"= "200px",
+              "margin-top"= "0px",
+              "margin-bottom"="0px",
+              width= 500,
+              height="15px",
+              padding =  0),
   multi = TRUE
 )
 
@@ -206,9 +222,9 @@ app$layout(
     dccTab(label = "About our data", htmlDiv(list(
       htmlH1("Dataset Introduction", style = textStyle1),
       htmlP("The dataset we are using is the  Stocks  data from the vega-datasets. 
-            The dataset has 560 observations in total. ", style = list('font-size' = '17px')),
+            The dataset has 560 observations in total. ", style = list('font-size' = '17px' ,"margin-left"= "30px")),
       htmlP("There are 5 companies in total, and they are Microsoft, Amazon, IBM, Google, and Apple. 
-      You can use the dropdown window to select the companies.", style = list('font-size' = '17px')),
+      You can use the dropdown window to select the companies.", style = list('font-size' = '17px',"margin-left"= "30px")),
       
             stocksDropdown1,
     #space
@@ -216,24 +232,33 @@ app$layout(
       htmlP("The date column lists out the date when the stock price was recorded.
             The value of the date column ranges from January 1, 2000 to March 1, 2010. The date range is the same for Microsoft, Amazon, IBM, and Apple. Each of them has 123 observations in the dataset. 
             Since Google held its IPO in August, 2004, the record for Google started from August 1, 2004. 
-            Therefore, there are 68 observations for Google.", style = list('font-size' = '17px')), 
-        htmlP("You can use the slider bar to select the date range.", style = list('font-size' = '17px')),   
-            yearSlider1,
+            Therefore, there are 68 observations for Google.", style = list('font-size' = '17px',"margin-left"= "30px")), 
+        htmlP("You can use the slider bar to select the date range", style = list('font-size' = '17px',"margin-left"= "30px")),   
+            htmlDiv(
+                yearSlider1,
+                style = list("margin-right" = "200px",
+                                "margin-left" = "200px")
+            ),
        #space
        htmlIframe(height=35, width=10, style=list(borderWidth = 0)),      
                 # addding dataset intro table to tab1
-            table,
+            htmlDiv(table,
+                    style = list("margin-right" = "30px",
+                                "margin-left" = "30px")
+            ),
        #space
        htmlIframe(height=35, width=10, style=list(borderWidth = 0)), 
             
             
             
-            htmlP(" The price column lists out the price of that stock on the recorded date.", style = list('font-size' = '17px')),
+            htmlP(" The price column lists out the price of that stock on the recorded date.", 
+                    style = list('font-size' = '17px',"margin-left"= "30px")),
             htmlP(" We created the monthly_return column, which is the monthly percentage changes 
-            in stock prices compare to the previous month.", style = list('font-size' = '17px')),
-            htmlP(" The volatility column shows the stardard deviation of stock prices within a year.", style = list('font-size' = '17px')),
+            in stock prices compare to the previous month.", style = list('font-size' = '17px',"margin-left"= "30px")),
+            htmlP(" The volatility column shows the stardard deviation of stock prices within a year.", 
+                    style = list('font-size' = '17px',"margin-left"= "30px")),
             htmlP(" The purpose of this app is to help people form a better view of stock price fluctuations 
-                        and long-term investment gains.", style = list('font-size' = '17px')),
+                        and long-term investment gains.", style = list('font-size' = '17px',"margin-left"= "30px")),
       #space
        htmlIframe(height=45, width=10, style=list(borderWidth = 0)) 
    
@@ -248,9 +273,10 @@ app$layout(
 
         htmlH1("Price History", style = textStyle1),
                 htmlH2("From 2000 to 2010, Apple's stock price increased 760%.", style = textStyle2),
-                htmlH3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010." ),
+                htmlH3("In this interactive chart below, you can visualize 
+                how the stocks of 5 major tech companies changed between 2000 and 2010.", style = list("margin-left"= "30px")),
                 htmlP("Use the dropdown window to select the company you want to explore.
-                Use the slide bar down the graph to select the time range.", style = list('font-size' = '17px')) ,
+                Use the slide bar down the graph to select the time range.", style = list('font-size' = '17px', "margin-left"= "30px")) ,
                 stocksDropdown, 
                 #space
                 htmlIframe(height=15, width=10, style=list(borderWidth = 0)),
@@ -259,7 +285,11 @@ app$layout(
                 #space
                 htmlIframe(height=15, width=10, style=list(borderWidth = 0)),
                 # monthly chart
-                graph2,
+                htmlDiv(
+                    graph2,
+                    style = list("margin-bottom" = "30px",
+                                "margin-left" = "30px")
+                ),
                 htmlIframe(height=15, width=10, style=list(borderWidth = 0))
       )
               )
@@ -269,12 +299,22 @@ app$layout(
 
     dccTab(label = "Investment Value" ,htmlDiv(list(
         htmlH1("How much will I gain?", style = textStyle1),
-        htmlH3("If I invested $10,000 in one of the companies in August 2004, how much will my investment worth in later days for each company?"),
-        htmlP("Use the year slider bar to select the time range and find out the investment value."), 
+        htmlH3("If I invested $10,000 in one of the companies in August 2004, 
+        how much will my investment worth in later days for each company?",
+        style = list("margin-left"= "30px")),
+        htmlP("Use the year slider bar to select the time range and find out the investment value.", 
+                style = list('font-size' = '18px',"margin-left"= "30px")), 
                        
             
     # range slider for selecting time range
-        htmlP(yearSlider),
+        htmlDiv(
+            yearSlider,
+            style = list("margin-top" = "-80px",
+                        "margin-bottom" = "-60px", 
+                        "margin-left" = "100px",
+                        "margin-right" = "200px",
+                        padding = 90)    
+        ),
   
             
             # To add some space
@@ -282,35 +322,45 @@ app$layout(
               htmlIframe(height=15, width=10, style=list(borderWidth = 0)), #space
             # adding investment plot
 
-            graph3,
+            htmlDiv(graph3,
+                    style = list("margin-bottom" = "20px")
+            ),
              
                 htmlH1("Why Apple has the highest investment value?", style = textStyle1),
                 htmlP("If you are curious why Apple has the highest investment value 
                 while Google has the highest price in the historial price chart you have seen in the previous tab, 
-                let's see the math here.", style = list('font-size' = '17px')), 
+                let's see the math here.", style = list('font-size' = '17px',"margin-left"= "30px")), 
                      
                 htmlP("In August 2004, Google's stock price was $102.37. 
-                With $10,000, I can buy 10,000/102.37 = 97.68 shares.", style = list('font-size' = '17px')), 
+                With $10,000, I can buy 10,000/102.37 = 97.68 shares.", 
+                    style = list('font-size' = '17px',"margin-left"= "30px")), 
                     
                 htmlP("In March 2010, Google's stock price was $560.19. 
-                Then my total investment value is 560.19 * 97.68 shares = $54,722.08.", style = list('font-size' = '17px')), 
+                Then my total investment value is 560.19 * 97.68 shares = $54,722.08.", 
+                    style = list('font-size' = '17px',"margin-left"= "30px")), 
                     
                 htmlP("On the other hand, in August 2004, Apple's stock price was $17.25. 
-                With $10,000, I can buy 10,000/102.37 = 579.71 shares.", style = list('font-size' = '17px')), 
+                With $10,000, I can buy 10,000/102.37 = 579.71 shares.", 
+                    style = list('font-size' = '17px',"margin-left"= "30px")), 
                     
                 htmlP("In March 2010, Apple's stock price was $223.02. 
-                Then my total investment value is  223.02 579.71 * shares = $129,286.95.", style = list('font-size' = '17px')), 
+                Then my total investment value is  223.02 579.71 * shares = $129,286.95.", 
+                style = list('font-size' = '17px',"margin-left"= "30px")), 
                    
                 htmlH4("Clearly, $129,286.95 worth much more than $54,722.08. 
-                You would earn much more if you picked Apple!"), 
+                You would earn much more if you picked Apple!",
+                style = list("margin-left"= "30px")), 
                        
-                htmlH3("Between 2004 and 2010, Google's stock price only increased 447.91%, but Apple increased 1192.9%."), 
+                htmlH3("Between 2004 and 2010, Google's stock price only increased 447.91%, but Apple increased 1192.9%.", 
+                        style = list("margin-left"= "30px")), 
                     
-                htmlP("It is this high growth that drags up Apple's investment value.", style = list('font-size' = '17px')), 
+                htmlP("It is this high growth that drags up Apple's investment value.", 
+                style = list('font-size' = '17px',"margin-left"= "30px")), 
                     
-                htmlH2("In investment, growth is more important than price!", style = list(color = '#0013a3')), 
+                htmlH2("In investment, growth is more important than price!", style = list(color = '#0013a3', "margin-left"= "30px")), 
                     
-                htmlP("Hope this answers your question and gives you some insights on investment.", style = list('font-size' = '17px')), 
+                htmlP("Hope this answers your question and gives you some insights on investment.", 
+                        style = list('font-size' = '17px',"margin-left"= "30px")), 
                     
                 
                 # To add some space
