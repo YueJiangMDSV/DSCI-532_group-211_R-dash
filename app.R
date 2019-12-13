@@ -210,7 +210,7 @@ yearSlider <- dccSlider(
   max = 12,
   
  
-  value = list(2000, 2010)
+  value = 12
 )
 
 
@@ -275,8 +275,8 @@ app$layout(
     dccTab(label='Stock trends', value = 'tab-2', htmlDiv(list(
 
         htmlH1("Price History", style = textStyle1),
-                htmlH2("From 2000 to 2010, Apple's stock price increased 760%.", style = textStyle2),
-                htmlH3("In this interactive chart below, you can visualize 
+                htmlH3("From 2000 to 2010, Apple's stock price increased 760%.", style = textStyle2),
+                htmlH4("In this interactive chart below, you can visualize 
                 how the stocks of 5 major tech companies changed between 2000 and 2010.", style = list("margin-left"= "30px")),
                 htmlP("Use the dropdown window to select the company you want to explore.
                 Use the slide bar down the graph to select the time range.", style = list('font-size' = '17px', "margin-left"= "30px")) ,
