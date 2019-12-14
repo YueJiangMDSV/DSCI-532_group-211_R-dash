@@ -17,7 +17,7 @@ The APP is called **Stock Price Data Analysis**. It has three tabs and two sets 
 
     Depending on the stock(s) selected in the above chart, the chart below will change correspondingly to show the monthly   percentage price changes for the selected company. 
 
-- The third tab is called "Investment Value". It shows the changes in “hypothetical” investment value over time. The chart shows that “hypothetically”, if the user invested $10,000 in each of the 5 tech companies in August 2004 (when Google held its IPO), how much would have their investment been in later days? There is also a slider bar that allows users to select the time range, and the graph will change accordingly. Below the graph, there are explanations why Google has the highest stock price, but Apple has the highest investment value. 
+- The third tab is called "Investment Value". It shows the changes in “hypothetical” investment value over time. The chart shows that “hypothetically”, if the user invested $10,000 in each of the 5 tech companies in August 2004 (when Google held its IPO), how much would have their investment been in later days? There is also a slider bar that allows users to select the time range, and the graph will change accordingly. In the graph below, there are explanations why Google has the highest stock price, but Apple has the highest investment value. 
 
 ### Sketch for dashboard 
 
