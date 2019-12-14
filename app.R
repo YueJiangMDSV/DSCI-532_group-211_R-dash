@@ -79,7 +79,8 @@ make_graph1 <- function(df){
         ggtitle("Stock price change from 2000 to 2010") +
         labs(x = "Date",
             y = "Stock Price") +
-        theme(plot.title = element_text(hjust = 0.5, vjust = 2))
+        theme(plot.title = element_text(hjust = 0.5, vjust = 2),
+              panel.border = element_blank())
 ggplotly(plot1_tab1, dynamicTicks = TRUE, tooltip = c("y", "x", "group")) %>%
   rangeslider() %>%
   layout(hovermode = "x")
@@ -95,7 +96,8 @@ plot2_tab1 <- df %>%
     scale_fill_manual(values = c("orange", "royalblue")) +
     theme(legend.title = element_blank(),
           legend.position = "none",
-          plot.title = element_text(hjust = 0.5, vjust = 2)) +
+          plot.title = element_text(hjust = 0.5, vjust = 2)) + 
+    scale_y_continuous(labels = percent) +
     labs(x = "\n \n Date",
          y = "Monthly Change %",
          title = "Monthly price changes between 2000 and 2010") +
@@ -115,9 +117,10 @@ plot2_tab1 <- df %>%
     plot_tab2 <-  df2 %>%
         ggplot(aes(x = date, y = inv_value, group = company, color = company)) +
         geom_line() +
-        ggtitle("Investment value from August 2004 to March 2010") +
+        ggtitle("Investment value from August 2004 to March 2010") + 
+        scale_y_continuous(labels = dollar) +
         labs(x = "Date",
-            y = "Investment Value $USD")
+            y = "Investment Value in USD")
             ggplotly(plot_tab2)
   }
 
@@ -207,7 +210,7 @@ yearSlider <- dccSlider(
   max = 12,
   
  
-  value = list(2000, 2010)
+  value = 12
 )
 
 
@@ -272,8 +275,8 @@ app$layout(
     dccTab(label='Stock trends', value = 'tab-2', htmlDiv(list(
 
         htmlH1("Price History", style = textStyle1),
-                htmlH2("From 2000 to 2010, Apple's stock price increased 760%.", style = textStyle2),
-                htmlH3("In this interactive chart below, you can visualize 
+                htmlH3("From 2000 to 2010, Apple's stock price increased 760%.", style = textStyle2),
+                htmlH4("In this interactive chart below, you can visualize 
                 how the stocks of 5 major tech companies changed between 2000 and 2010.", style = list("margin-left"= "30px")),
                 htmlP("Use the dropdown window to select the company you want to explore.
                 Use the slide bar down the graph to select the time range.", style = list('font-size' = '17px', "margin-left"= "30px")) ,
