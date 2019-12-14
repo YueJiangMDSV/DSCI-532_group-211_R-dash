@@ -4,7 +4,7 @@ This repository hosts the dashboard for the stock price data from the `vega-data
 
 # dashR_deployed
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[Link to Deployed app at Heroku](https://dsci532-group-211-r-dash.herokuapp.com/)
 
 
 ### Description of the App/Dashboard
