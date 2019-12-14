@@ -2,7 +2,7 @@
 
 ## Strengths:
 Similar to the Python dashboard, our R dashboard is easy to use and easy to understand. 
-1.	We kept the dataset introduction in Tab 1 that gives users the background information and purpose of our dashboard.
+1.	We kept the dataset introduction in Tab 1 that gives users the background information and purposes of our dashboard.
 2.	We kept the drop-down window and range slider bar in Tab 2 that allows users to select the stock(s) and time range that they are interested to further explore.
 3.	We also kept the interactivity between the drop-down window and the second chart in Tab 2.
 4.	We kept the slider bar and explanations in Tab 3 to help users further understand financial investments.  
