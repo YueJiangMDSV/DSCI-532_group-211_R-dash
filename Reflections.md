@@ -1,6 +1,6 @@
 # Reflections
 
-## Strengths:
+## Strengths
 Similar to the Python dashboard, our R dashboard is easy to use and easy to understand. 
 1.	We kept the dataset introduction in Tab 1 that gives users the background information and purposes of our dashboard.
 2.	We kept the drop-down window and range slider bar in Tab 2 that allows users to select the stock(s) and time range that they are interested to further explore.
